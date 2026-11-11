@@ -1,0 +1,28 @@
+package ni.edu.uam.api_docentes.controller;
+
+import lombok.Data;
+import ni.edu.uam.api_docentes.modelo.Docente;
+import ni.edu.uam.api_docentes.repository.DocenteRepository;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/docentes")
+public class DocenteController {
+    private final DocenteRepository repository;
+
+
+    public DocenteController(DocenteRepository repository) {
+        this.repository = repository;
+    }
+    @GetMapping
+    public List<Docente> listar() {
+        return repository.findAll();
+
+    }
+    @PostMapping
+    public Docente save(@RequestBody Docente docente) {
+        return repository.save(docente);
+    }
+}
